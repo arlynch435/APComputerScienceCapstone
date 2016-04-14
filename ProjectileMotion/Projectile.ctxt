@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.params=xStart\ yStart\ xLaunch\ yLaunch
+comment0.target=Projectile(double,\ double,\ double,\ double)
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ Projectile\r\n
+comment1.params=
+comment1.target=double\ getXPos()
+comment2.params=
+comment2.target=double\ getYPos()
+comment3.params=
+comment3.target=double\ getXVelo()
+comment4.params=
+comment4.target=double\ getYVelo()
+comment5.params=newPos
+comment5.target=void\ setXPos(double)
+comment6.params=newPos
+comment6.target=void\ setYPos(double)
+comment7.params=newVelo
+comment7.target=void\ setXVelo(double)
+comment8.params=newVelo
+comment8.target=void\ setYVelo(double)
+numComments=9

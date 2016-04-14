@@ -60,7 +60,7 @@ public class Projectile
         // put your code here
         this.xVelocity=newVelo;
     }
-        public void setYVelo(newVelo)
+        public void setYVelo(double newVelo)
     {
         // put your code here
         this.yVelocity=newVelo;

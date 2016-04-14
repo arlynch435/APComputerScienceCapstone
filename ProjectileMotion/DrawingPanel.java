@@ -28,6 +28,7 @@ public class DrawingPanel extends JPanel
     private boolean isShapePicked;
     private Color shapeColor;
     private boolean changeRadius;
+    private static final GRAVITY=9.8;
 
     /**
      * Default constructor for objects of class DrawingPanel
@@ -67,13 +68,9 @@ public class DrawingPanel extends JPanel
             this.shapeColor=newColor;
         }
     }
-    public void addCircle()
+    public double calcDelta(double property, double time)
     {
-
-    }
-    public void addSquare()
-    {
-
+        return property*time;
     }
     public void paintComponent(Graphics g)
     {
