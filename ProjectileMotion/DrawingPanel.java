@@ -24,34 +24,31 @@ public class DrawingPanel extends JPanel
     private SelectListener select;
     private DragListener move;
     private ArrowListener compass;
-    private int activeShape;
-    private boolean isShapePicked;
-    private Color shapeColor;
-    private boolean changeRadius;
-    private static final double GRAVITY=9.8;
+    private static final double GRAVITY= -9.8;
+    private Projectile ball;
+    private double theta;
+    private double downPull;
+    private double compoundingTime;
 
     /**
      * Default constructor for objects of class DrawingPanel
      */
-    public DrawingPanel()
+    public DrawingPanel(Projectile p)
     {
         super();
+        this.compoundingTime=1.0;
+        this.ball=p;
+        this.downPull=9/8;
+        this.theta=30;
         this.setFocusable(true);
         this.select=new SelectListener();
         this.move=new DragListener();
         this.compass=new ArrowListener();
         this.requestFocusInWindow();
         this.setBackground(Color.WHITE);
-        this.activeShape=-1;
-        this.isShapePicked=false;
-        this.shapeColor=Color.BLUE;
         this.addMouseListener(this.select);
         this.addMouseMotionListener(this.move);
         this.addKeyListener(this.compass);
-    }
-    public Color getColor()
-    {  
-        return this.shapeColor;
     }
     public Dimension getPreferredSize()
     {
@@ -62,10 +59,30 @@ public class DrawingPanel extends JPanel
     {
         return property*time;
     }
+    public void intMotion(double intForce)
+    {
+        double startVelo=intForce*2;
+        this.downPull=this.GRAVITY/this.ball.getMass();
+        startVelo=startVelo/this.ball.getMass();
+        startVelo=Math.sqrt(startVelo);
+        this.ball.setXVelo(Math.cos(this.theta)*startVelo);
+        this.ball.setYVelo(Math.sin(this.theta)*startVelo);
+    }
+    public void move()
+    {
+        this.ball.setXPos((this.calcDelta(this.ball.getXVelo(),this.compoundingTime))+this.ball.getXPos());
+        this.ball.setYPos((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos());
+        this.ball.setYVelo((this.calcDelta(this.downPull,this.compoundingTime))+this.ball.getYVelo());
+    }
+    public void setCompoundingTime(double newTime)
+    {
+        this.compoundingTime=newTime;
+    }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2= (Graphics2D) g;
+        this.ball.draw(g2);
     }
         public class SelectListener implements MouseListener
     {
@@ -89,7 +106,6 @@ public class DrawingPanel extends JPanel
           double xPos=event.getX();
           double yPos=event.getY();
           Point2D.Double mousePos=new Point2D.Double(xPos,yPos);
-          isShapePicked=false;
            repaint();
         }
         public void mouseReleased(MouseEvent event)
@@ -120,15 +136,14 @@ public class DrawingPanel extends JPanel
        public void  keyPressed(KeyEvent event)
        {
            //Invoked when a key has been pressed.
-           if (isShapePicked)
-           {
                int key =event.getKeyCode();
                if (key==KeyEvent.VK_SPACE)
                {
                    //projectile.launch();
                 }
+                
             }
-       }
+       
        public void  keyReleased(KeyEvent event)
        {
            //Invoked when a key has been released.
@@ -137,7 +152,5 @@ public class DrawingPanel extends JPanel
        {
            //Invoked when a key has been typed.
         }
-
     }
-
 }

@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.params=d
-comment0.target=ControlPanel(DrawingPanel)
+comment0.params=d\ p
+comment0.target=ControlPanel(DrawingPanel,\ Projectile)
 comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ ControlPanel\r\n
 numComments=1

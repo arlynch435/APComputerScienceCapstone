@@ -1,5 +1,6 @@
-
-
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.geom.Ellipse2D;
 /**
  * Write a description of class Projectile here.
  * 
@@ -13,17 +14,19 @@ public class Projectile
     private double yPos;
     private double xVelocity;
     private double yVelocity;
+    private double mass;
 
     /**
      * Default constructor for objects of class Projectile
      */
-    public Projectile(double xStart, double yStart, double xLaunch, double yLaunch)
+    public Projectile(double xStart, double yStart, double xLaunch, double yLaunch, double weight)
     {
         // initialise instance variables
         this.xPos=xStart;
         this.yPos=yStart;
         this.xVelocity=xLaunch;
         this.yVelocity=yLaunch;
+        this.mass=weight;
     }
     public double getXPos()
     {
@@ -45,6 +48,11 @@ public class Projectile
         // put your code here
         return yVelocity;
     }
+    public double getMass()
+    {
+        // put your code here
+        return mass;
+    }
         public void setXPos(double newPos)
     {
         // put your code here
@@ -64,6 +72,13 @@ public class Projectile
     {
         // put your code here
         this.yVelocity=newVelo;
+    }
+        public void draw(Graphics2D g2)
+    {
+        Ellipse2D.Double circle=new Ellipse2D.Double(this.xPos-10,
+                                                     this.yPos-10,
+                                                     10*2,10*2);
+        g2.draw(circle);
     }
 
 }

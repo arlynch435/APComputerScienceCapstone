@@ -1,13 +1,17 @@
 #BlueJ class context
-comment0.params=
-comment0.target=DrawingPanel()
+comment0.params=p
+comment0.target=DrawingPanel(Projectile)
 comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ DrawingPanel\r\n
 comment1.params=
-comment1.target=java.awt.Color\ getColor()
-comment2.params=
-comment2.target=java.awt.Dimension\ getPreferredSize()
-comment3.params=property\ time
-comment3.target=double\ calcDelta(double,\ double)
-comment4.params=g
-comment4.target=void\ paintComponent(java.awt.Graphics)
-numComments=5
+comment1.target=java.awt.Dimension\ getPreferredSize()
+comment2.params=property\ time
+comment2.target=double\ calcDelta(double,\ double)
+comment3.params=intForce
+comment3.target=void\ intMotion(double)
+comment4.params=
+comment4.target=void\ move()
+comment5.params=newTime
+comment5.target=void\ setCompoundingTime(double)
+comment6.params=g
+comment6.target=void\ paintComponent(java.awt.Graphics)
+numComments=7

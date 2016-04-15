@@ -21,14 +21,21 @@ public class ControlPanel extends JPanel
     private DrawingPanel canvas;
     private JLabel xVelocity;
     private JLabel yVelocity;
+    private Projectile ball;
 
     /**
      * Default constructor for objects of class ControlPanel
      */
-    public ControlPanel(DrawingPanel d)
+    public ControlPanel(DrawingPanel d, Projectile p)
     {
         super();
         this.canvas=d;
+        this.ball=p;
+        this.angle=new JLabel("Angle: ");
+        this.xPos=new JLabel("x position: "+this.ball.getXPos());
+        this.yPos=new JLabel("y position: "+this.ball.getYPos());
+        this.xVelocity=new JLabel("x velocity: "+this.ball.getXVelo());
+        this.yVelocity=new JLabel("y velocity: "+this.ball.getYVelo());
         this.add(this.angle);
         this.add(this.xPos);
         this.add(this.yPos);
