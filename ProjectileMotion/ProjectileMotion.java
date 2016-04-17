@@ -13,7 +13,7 @@ public class ProjectileMotion extends JFrame
     {
         super();
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        Projectile ball=new Projectile(0,0,0,0,100);
+        Projectile ball=new Projectile(1600,500,0,0,100);
         DrawingPanel canvas=new DrawingPanel(ball);
         ControlPanel controls=new ControlPanel(canvas, ball);
         this.setLayout(new BorderLayout());

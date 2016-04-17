@@ -52,7 +52,7 @@ public class DrawingPanel extends JPanel
     }
     public Dimension getPreferredSize()
     {
-        Dimension pref= new Dimension(800,500);
+        Dimension pref= new Dimension(1600,500);
         return pref;
     }
     public double calcDelta(double property, double time)
