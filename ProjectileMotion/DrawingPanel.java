@@ -68,15 +68,25 @@ public class DrawingPanel extends JPanel
         this.ball.setXVelo(Math.cos(this.theta)*startVelo);
         this.ball.setYVelo(Math.sin(this.theta)*startVelo);
     }
+    public void testMotion()
+    {
+        this.downPull=this.GRAVITY/this.ball.getMass();
+        this.ball.setXVelo(50);
+        this.ball.setYVelo(50);
+    }
     public void move()
     {
         this.ball.setXPos((this.calcDelta(this.ball.getXVelo(),this.compoundingTime))+this.ball.getXPos());
-        this.ball.setYPos(((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos())-500);
-        this.ball.setYVelo((this.calcDelta(this.downPull,this.compoundingTime))+this.ball.getYVelo());
+        this.ball.setYPos(500-((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos()));
+        this.ball.setYVelo(this.ball.getYVelo()-(this.calcDelta(this.downPull,this.compoundingTime)));
     }
     public void setCompoundingTime(double newTime)
     {
         this.compoundingTime=newTime;
+    }
+    public double getTime()
+    {
+        return this.compoundingTime;
     }
     public void paintComponent(Graphics g)
     {
@@ -139,7 +149,8 @@ public class DrawingPanel extends JPanel
                int key =event.getKeyCode();
                if (key==KeyEvent.VK_SPACE)
                {
-                   //projectile.launch();
+                   testMotion();
+                   repaint();
                 }
                 
             }
