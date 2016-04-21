@@ -71,7 +71,7 @@ public class DrawingPanel extends JPanel
     public void move()
     {
         this.ball.setXPos((this.calcDelta(this.ball.getXVelo(),this.compoundingTime))+this.ball.getXPos());
-        this.ball.setYPos((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos());
+        this.ball.setYPos(((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos())-500);
         this.ball.setYVelo((this.calcDelta(this.downPull,this.compoundingTime))+this.ball.getYVelo());
     }
     public void setCompoundingTime(double newTime)
