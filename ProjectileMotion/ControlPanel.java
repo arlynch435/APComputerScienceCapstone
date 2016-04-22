@@ -47,20 +47,22 @@ public class ControlPanel extends JPanel
         this.add(this.yPos);
         this.add(this.xVelocity);
         this.add(this.yVelocity);
-        this.canvas.setCompoundingTime(10);
+        this.canvas.setCompoundingTime(.01);
     }
         public class ClickListener implements ActionListener
     {
         
         public void actionPerformed(ActionEvent event) 
         {
+            try
+            {
             canvas.testMotion();
             xPos.setText("x position: "+ball.getXPos());
             yPos.setText("y position: "+ball.getYPos());
             xVelocity.setText("x velocity: "+ball.getXVelo());
             yVelocity.setText("y velocity: "+ball.getYVelo());
             canvas.repaint();
-            for (int i=0; i<(int)canvas.getTime(); i++)
+            for (int i=0; i<30; i++)
             {
                 canvas.move();
                 xPos.setText("x position: "+ball.getXPos());
@@ -70,6 +72,12 @@ public class ControlPanel extends JPanel
                 canvas.repaint();
                 Thread.sleep(100);
             }
+        }
+        catch(InterruptedException ie)
+        {
+            System.out.println(ie.getMessage());
+        }
+        
             //System.out.println(event.getActionCommand()+" was pressed!");
 //             if ("Pick Color".equals(event.getActionCommand()))
 //             {

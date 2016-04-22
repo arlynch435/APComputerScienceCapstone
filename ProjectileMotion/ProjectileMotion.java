@@ -13,7 +13,7 @@ public class ProjectileMotion extends JFrame
     {
         super();
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        Projectile ball=new Projectile(50,400,0,0,100);
+        Projectile ball=new Projectile(50,400,0,0,10);
         DrawingPanel canvas=new DrawingPanel(ball);
         ControlPanel controls=new ControlPanel(canvas, ball);
         this.setLayout(new BorderLayout());
@@ -23,7 +23,7 @@ public class ProjectileMotion extends JFrame
         this.setVisible(true);
         this.setTitle("Projectile Motion");
     }
-    public static void main(String[] args)
+    public static void main(String[] args)throws InterruptedException
     {
         ProjectileMotion window= new ProjectileMotion();
     }
