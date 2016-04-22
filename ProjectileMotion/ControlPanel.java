@@ -13,7 +13,7 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ControlPanel extends JPanel
+public class ControlPanel extends JPanel 
 {
     /** description of instance variable x (add comment for each instance variable) */
     private JLabel angle;
@@ -28,7 +28,7 @@ public class ControlPanel extends JPanel
     /**
      * Default constructor for objects of class ControlPanel
      */
-    public ControlPanel(DrawingPanel d, Projectile p)
+    public ControlPanel(DrawingPanel d, Projectile p) throws InterruptedException
     {
         super();
         this.canvas=d;
@@ -52,7 +52,7 @@ public class ControlPanel extends JPanel
         public class ClickListener implements ActionListener
     {
         
-        public void actionPerformed(ActionEvent event)
+        public void actionPerformed(ActionEvent event) 
         {
             canvas.testMotion();
             xPos.setText("x position: "+ball.getXPos());
@@ -68,6 +68,7 @@ public class ControlPanel extends JPanel
                 xVelocity.setText("x velocity: "+ball.getXVelo());
                 yVelocity.setText("y velocity: "+ball.getYVelo());
                 canvas.repaint();
+                Thread.sleep(100);
             }
             //System.out.println(event.getActionCommand()+" was pressed!");
 //             if ("Pick Color".equals(event.getActionCommand()))

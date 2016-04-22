@@ -9,7 +9,7 @@ public class ProjectileMotion extends JFrame
     /**
      * Default constructor for objects of class DrawingEditor
      */
-    public ProjectileMotion()
+    public ProjectileMotion() throws InterruptedException
     {
         super();
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
