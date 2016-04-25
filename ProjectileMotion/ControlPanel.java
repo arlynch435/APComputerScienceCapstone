@@ -35,13 +35,13 @@ public class ControlPanel extends JPanel
         this.ball=p;
         ClickListener listen=new ClickListener();
         this.angle=new JLabel("Angle: ");
-        this.xPos=new JLabel("x position: "+this.ball.getXPos());
-        this.yPos=new JLabel("y position: "+this.ball.getYPos());
-        this.xVelocity=new JLabel("x velocity: "+this.ball.getXVelo());
-        this.yVelocity=new JLabel("y velocity: "+this.ball.getYVelo());
-        this.buttonTest=new JButton("Test!");
-        this.buttonTest.addActionListener(listen);
-        this.add(this.buttonTest);
+        this.xPos=new JLabel(String.format("x position: %.2f",this.ball.getXPos()));
+        this.yPos=new JLabel(String.format("y position: %.2f",this.ball.getYPos()));
+        this.xVelocity=new JLabel(String.format("x velocity: %.2f",this.ball.getXVelo()));
+        this.yVelocity=new JLabel(String.format("y velocity: %.2f",(500-this.ball.getYVelo())));
+        //this.buttonTest=new JButton("Test!");
+        //this.buttonTest.addActionListener(listen);
+        //this.add(this.buttonTest);
         this.add(this.angle);
         this.add(this.xPos);
         this.add(this.yPos);
@@ -49,52 +49,20 @@ public class ControlPanel extends JPanel
         this.add(this.yVelocity);
         this.canvas.setCompoundingTime(.01);
     }
+    public void nextFrame()
+    {
+        canvas.move();
+        xPos.setText(String.format("x position: %.2f",ball.getXPos()));
+        yPos.setText(String.format("y position: %.2f",(500-ball.getYPos())));
+        xVelocity.setText(String.format("x velocity: %.2f",ball.getXVelo()));
+        yVelocity.setText(String.format("y velocity: %.2f",ball.getYVelo()));
+        canvas.repaint();
+    }
         public class ClickListener implements ActionListener
     {
         
         public void actionPerformed(ActionEvent event) 
         {
-            try
-            {
-            canvas.testMotion();
-            xPos.setText("x position: "+ball.getXPos());
-            yPos.setText("y position: "+ball.getYPos());
-            xVelocity.setText("x velocity: "+ball.getXVelo());
-            yVelocity.setText("y velocity: "+ball.getYVelo());
-            canvas.repaint();
-            for (int i=0; i<30; i++)
-            {
-                canvas.move();
-                xPos.setText("x position: "+ball.getXPos());
-                yPos.setText("y position: "+ball.getYPos());
-                xVelocity.setText("x velocity: "+ball.getXVelo());
-                yVelocity.setText("y velocity: "+ball.getYVelo());
-                canvas.repaint();
-                Thread.sleep(100);
-            }
-        }
-        catch(InterruptedException ie)
-        {
-            System.out.println(ie.getMessage());
-        }
-        
-            //System.out.println(event.getActionCommand()+" was pressed!");
-//             if ("Pick Color".equals(event.getActionCommand()))
-//             {
-//                 canvas.pickColor();
-//                 colorDisplay.setBackground(canvas.getColor());
-//                 colorDisplay.repaint();
-//             }
-//             if ("Add Circle".equals(event.getActionCommand()))
-//             {
-//                 canvas.addCircle();
-//                 canvas.repaint();
-//             }
-//             if ("Add Square".equals(event.getActionCommand()))
-//             {
-//                 canvas.addSquare();
-//                 canvas.repaint();
-//             }
         }
     
     }

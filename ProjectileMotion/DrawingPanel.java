@@ -61,24 +61,22 @@ public class DrawingPanel extends JPanel
     }
     public void intMotion(double intForce)
     {
-        double startVelo=intForce*2;
+        double startVelo=intForce/this.ball.getMass();
         this.downPull=this.GRAVITY/this.ball.getMass();
-        startVelo=startVelo/this.ball.getMass();
-        startVelo=Math.sqrt(startVelo);
         this.ball.setXVelo(Math.cos(this.theta)*startVelo);
         this.ball.setYVelo(Math.sin(this.theta)*startVelo);
     }
     public void testMotion()
     {
         this.downPull=this.GRAVITY/this.ball.getMass();
-        this.ball.setXVelo(50);
-        this.ball.setYVelo(50);
+        this.ball.setXVelo(10);
+        this.ball.setYVelo(30);
     }
     public void move()
     {
         this.ball.setXPos((this.calcDelta(this.ball.getXVelo(),this.compoundingTime))+this.ball.getXPos());
-        this.ball.setYPos((this.calcDelta(this.ball.getYVelo(),this.compoundingTime))+this.ball.getYPos());
-        this.ball.setYVelo(this.ball.getYVelo()-(this.calcDelta(this.downPull,this.compoundingTime)));
+        this.ball.setYPos(this.ball.getYPos()-(this.calcDelta(this.ball.getYVelo(),this.compoundingTime)));
+        this.ball.setYVelo(this.ball.getYVelo()+(this.calcDelta(this.downPull,this.compoundingTime)));
     }
     public void setCompoundingTime(double newTime)
     {
