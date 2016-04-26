@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
+import java.awt.geom.Line2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -29,7 +30,8 @@ public class DrawingPanel extends JPanel
     private double theta;
     private double downPull;
     private double compoundingTime;
-
+    private Line2D.Double vector;
+    
     /**
      * Default constructor for objects of class DrawingPanel
      */
@@ -70,7 +72,7 @@ public class DrawingPanel extends JPanel
     {
         this.downPull=this.GRAVITY/this.ball.getMass();
         this.ball.setXVelo(10);
-        this.ball.setYVelo(30);
+        this.ball.setYVelo(9.8);
     }
     public void move()
     {
@@ -91,6 +93,15 @@ public class DrawingPanel extends JPanel
         super.paintComponent(g);
         Graphics2D g2= (Graphics2D) g;
         this.ball.draw(g2);
+        if (this.vector!=null)
+        {
+            g2.draw(this.vector);
+        }
+    }
+    public void findForce(Point2D.Double mouse)
+    {
+        Point2D.Double ballCenter=new Point2D.Double(this.ball.getXPos(),this.ball.getYPos());
+        this.vector=new Line2D.Double(ballCenter,mouse);
     }
         public class SelectListener implements MouseListener
     {
@@ -114,6 +125,7 @@ public class DrawingPanel extends JPanel
           double xPos=event.getX();
           double yPos=event.getY();
           Point2D.Double mousePos=new Point2D.Double(xPos,yPos);
+          findForce(mousePos);
            repaint();
         }
         public void mouseReleased(MouseEvent event)

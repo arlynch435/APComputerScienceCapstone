@@ -75,8 +75,8 @@ public class Projectile
     }
         public void draw(Graphics2D g2)
     {
-        Ellipse2D.Double circle=new Ellipse2D.Double(this.xPos-10,
-                                                     this.yPos-10,
+        Ellipse2D.Double circle=new Ellipse2D.Double(this.xPos-5,
+                                                     this.yPos-5,
                                                      10,10);
         g2.draw(circle);
     }

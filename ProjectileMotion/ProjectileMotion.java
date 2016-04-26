@@ -34,7 +34,7 @@ public class ProjectileMotion extends JFrame
         for( int seconds = 0; seconds < 3000; seconds++ )
         {
             window.animate();
-            Thread.sleep( 10 );
+            Thread.sleep( 1 );
         }
     }
 
