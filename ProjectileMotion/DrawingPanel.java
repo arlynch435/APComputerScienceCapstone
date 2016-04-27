@@ -71,7 +71,7 @@ public class DrawingPanel extends JPanel
     public void testMotion()
     {
         this.downPull=this.GRAVITY/this.ball.getMass();
-        this.ball.setXVelo(10);
+        this.ball.setXVelo(40);
         this.ball.setYVelo(9.8);
     }
     public void move()
