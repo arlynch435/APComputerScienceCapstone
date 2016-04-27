@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=p
-comment0.target=DrawingPanel(Projectile)
+comment0.target=DisplayPanel(Projectile)
 comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ DrawingPanel\r\n
 comment1.params=
 comment1.target=java.awt.Dimension\ getPreferredSize()

@@ -7,14 +7,14 @@ public class ProjectileMotion extends JFrame
     private static final int FRAME_HEIGHT=800;
     private ControlPanel controls;
     /**
-     * Default constructor for objects of class DrawingEditor
+     * Default constructor for objects of class DisplayEditor
      */
     public ProjectileMotion() throws InterruptedException
     {
         super();
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         Projectile ball=new Projectile(50,400,0,0,10);
-        DrawingPanel canvas=new DrawingPanel(ball);
+        DisplayPanel canvas=new DisplayPanel(ball);
         canvas.testMotion();
         controls=new ControlPanel(canvas, ball);
         this.setLayout(new BorderLayout());

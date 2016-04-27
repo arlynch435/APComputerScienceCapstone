@@ -19,7 +19,7 @@ import javax.swing.JColorChooser;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class DrawingPanel extends JPanel
+public class DisplayPanel extends JPanel
 {
     /** description of instance variable x (add comment for each instance variable) */
     private SelectListener select;
@@ -35,7 +35,7 @@ public class DrawingPanel extends JPanel
     /**
      * Default constructor for objects of class DrawingPanel
      */
-    public DrawingPanel(Projectile p)
+    public DisplayPanel(Projectile p)
     {
         super();
         this.compoundingTime=1.0;

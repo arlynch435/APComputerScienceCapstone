@@ -19,7 +19,7 @@ public class ControlPanel extends JPanel
     private JLabel angle;
     private JLabel xPos;
     private JLabel yPos;
-    private DrawingPanel canvas;
+    private DisplayPanel canvas;
     private JLabel xVelocity;
     private JLabel yVelocity;
     private Projectile ball;
@@ -28,7 +28,7 @@ public class ControlPanel extends JPanel
     /**
      * Default constructor for objects of class ControlPanel
      */
-    public ControlPanel(DrawingPanel d, Projectile p) throws InterruptedException
+    public ControlPanel(DisplayPanel d, Projectile p) throws InterruptedException
     {
         super();
         this.canvas=d;
