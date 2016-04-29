@@ -9,14 +9,14 @@ import java.util.TimerTask;
 public class AnimateProjectile extends TimerTask
 {
     /** description of instance variable x (add comment for each instance variable) */
+    private ControlPanel controls;
 
     /**
      * Default constructor for objects of class AnimateProjectile
      */
-    public AnimateProjectile()
+    public AnimateProjectile(ControlPanel connorChong)
     {
-        // initialise instance variables
-        x = 0;
+        this.controls=connorChong;
     }
 
     /**
@@ -33,6 +33,17 @@ public class AnimateProjectile extends TimerTask
     public void run()
     {
         // put your code here animate();
+        try{
+           for( int seconds = 0; seconds < 3000; seconds++ )
+           {
+               controls.nextFrame();
+               Thread.sleep( 1 );
+            }
+       }
+       catch(InterruptedException e)
+       {
+           e.printStackTrace();
+        }
     }
 
 }

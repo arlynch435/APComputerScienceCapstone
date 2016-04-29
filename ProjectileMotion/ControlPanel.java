@@ -7,6 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.util.TimerTask;
+import java.util.Timer;
+import java.util.Date;
 /**
  * Write a description of class ControlPanel here.
  * 
@@ -24,7 +27,8 @@ public class ControlPanel extends JPanel
     private JLabel yVelocity;
     private Projectile ball;
     private JButton buttonTest;
-
+    private Timer timer;
+    private TimerTask animator;
     /**
      * Default constructor for objects of class ControlPanel
      */
@@ -39,9 +43,11 @@ public class ControlPanel extends JPanel
         this.yPos=new JLabel(String.format("y position: %.2f",this.ball.getYPos()));
         this.xVelocity=new JLabel(String.format("x velocity: %.2f",this.ball.getXVelo()));
         this.yVelocity=new JLabel(String.format("y velocity: %.2f",(500-this.ball.getYVelo())));
-        //this.buttonTest=new JButton("Test!");
-        //this.buttonTest.addActionListener(listen);
-        //this.add(this.buttonTest);
+        this.timer=new Timer();
+        this.animator=new AnimateProjectile(this);
+        this.buttonTest=new JButton("Launch!");
+        this.buttonTest.addActionListener(listen);
+        this.add(this.buttonTest);
         this.add(this.angle);
         this.add(this.xPos);
         this.add(this.yPos);
@@ -63,6 +69,9 @@ public class ControlPanel extends JPanel
         
         public void actionPerformed(ActionEvent event) 
         {
+            Date time=new Date();
+            timer.schedule(animator,time);
+            timer.cancel();
         }
     
     }
