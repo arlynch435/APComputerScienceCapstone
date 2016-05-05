@@ -24,18 +24,9 @@ public class ProjectileMotion extends JFrame
         this.setVisible(true);
         this.setTitle("Projectile Motion");
     }
-    public void animate()
-    {
-        controls.nextFrame();
-    }
     public static void main(String[] args)throws InterruptedException
     {
         ProjectileMotion window= new ProjectileMotion();
-//         for( int seconds = 0; seconds < 3000; seconds++ )
-//         {
-//             window.animate();
-//             Thread.sleep( 1 );
-//         }
     }
 
 }

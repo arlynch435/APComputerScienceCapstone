@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=xStart\ yStart
+comment0.target=Ground(double,\ double)
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ Projectile\r\n
+comment1.params=
+comment1.target=double\ getHeight()
+comment2.params=g2
+comment2.target=void\ draw(java.awt.Graphics2D)
+numComments=3

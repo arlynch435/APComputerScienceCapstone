@@ -1,6 +1,7 @@
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 /**
  * Write a description of class Projectile here.
  * 
@@ -15,7 +16,7 @@ public class Projectile
     private double xVelocity;
     private double yVelocity;
     private double mass;
-
+    private Point2D.Double center;
     /**
      * Default constructor for objects of class Projectile
      */
@@ -27,6 +28,7 @@ public class Projectile
         this.xVelocity=xLaunch;
         this.yVelocity=yLaunch;
         this.mass=weight;
+        this.center=new Point2D.Double(this.xPos,this.yPos);
     }
     public double getXPos()
     {
@@ -48,6 +50,10 @@ public class Projectile
         // put your code here
         return yVelocity;
     }
+    public Point2D.Double getCenter()
+    {
+        return this.center;
+    }
     public double getMass()
     {
         // put your code here
@@ -62,6 +68,10 @@ public class Projectile
     {
         // put your code here
         this.yPos=newPos;
+    }
+        public void setCenter()
+    {
+        this.center=new Point2D.Double(this.xPos,this.yPos);
     }
         public void setXVelo(double newVelo)
     {

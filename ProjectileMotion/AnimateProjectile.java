@@ -33,17 +33,7 @@ public class AnimateProjectile extends TimerTask
     public void run()
     {
         // put your code here animate();
-        try{
-           for( int seconds = 0; seconds < 3000; seconds++ )
-           {
                controls.nextFrame();
-               Thread.sleep( 1 );
-            }
-       }
-       catch(InterruptedException e)
-       {
-           e.printStackTrace();
-        }
     }
 
 }

@@ -31,6 +31,7 @@ public class DisplayPanel extends JPanel
     private double downPull;
     private double compoundingTime;
     private Line2D.Double vector;
+    private Ground ground;
     
     /**
      * Default constructor for objects of class DrawingPanel
@@ -51,6 +52,7 @@ public class DisplayPanel extends JPanel
         this.addMouseListener(this.select);
         this.addMouseMotionListener(this.move);
         this.addKeyListener(this.compass);
+        this.ground=new Ground(1600,450);
     }
     public Dimension getPreferredSize()
     {
@@ -61,9 +63,9 @@ public class DisplayPanel extends JPanel
     {
         return property*time;
     }
-    public void intMotion(double intForce)
+    public void intMotion(double intEnergy)
     {
-        double startVelo=intForce/this.ball.getMass();
+        double startVelo=Math.sqrt(2*intEnergy/this.ball.getMass());
         this.downPull=this.GRAVITY/this.ball.getMass();
         this.ball.setXVelo(Math.cos(this.theta)*startVelo);
         this.ball.setYVelo(Math.sin(this.theta)*startVelo);
@@ -88,11 +90,16 @@ public class DisplayPanel extends JPanel
     {
         return this.compoundingTime;
     }
+    public Ground getGround()
+    {
+        return ground;
+    }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2= (Graphics2D) g;
         this.ball.draw(g2);
+        this.ground.draw(g2);
         if (this.vector!=null)
         {
             g2.draw(this.vector);
@@ -100,8 +107,11 @@ public class DisplayPanel extends JPanel
     }
     public void findForce(Point2D.Double mouse)
     {
-        Point2D.Double ballCenter=new Point2D.Double(this.ball.getXPos(),this.ball.getYPos());
-        this.vector=new Line2D.Double(ballCenter,mouse);
+        this.vector=new Line2D.Double(ball.getCenter(),mouse);
+    }
+    public double getTheta()
+    {
+        return Math.toDegrees(this.theta);
     }
         public class SelectListener implements MouseListener
     {
@@ -111,7 +121,7 @@ public class DisplayPanel extends JPanel
         }
         public void mouseEntered(MouseEvent event)
         {
-           requestFocusInWindow();
+           //requestFocusInWindow();
             // Invoked when the mouse enters a component.
         }
         public void mouseExited(MouseEvent event)
@@ -124,6 +134,7 @@ public class DisplayPanel extends JPanel
 
           double xPos=event.getX();
           double yPos=event.getY();
+          theta=Math.acos(xPos-ball.getXPos());
           Point2D.Double mousePos=new Point2D.Double(xPos,yPos);
           findForce(mousePos);
            repaint();

@@ -29,6 +29,7 @@ public class ControlPanel extends JPanel
     private JButton buttonTest;
     private Timer timer;
     private TimerTask animator;
+    private static final double EPSILON=.1;
     /**
      * Default constructor for objects of class ControlPanel
      */
@@ -37,8 +38,8 @@ public class ControlPanel extends JPanel
         super();
         this.canvas=d;
         this.ball=p;
-        ClickListener listen=new ClickListener();
-        this.angle=new JLabel("Angle: ");
+        ClickListener listen=new ClickListener(this);
+        this.angle=new JLabel(String.format("Angle: %.2f",this.canvas.getTheta()));
         this.xPos=new JLabel(String.format("x position: %.2f",this.ball.getXPos()));
         this.yPos=new JLabel(String.format("y position: %.2f",this.ball.getYPos()));
         this.xVelocity=new JLabel(String.format("x velocity: %.2f",this.ball.getXVelo()));
@@ -62,16 +63,27 @@ public class ControlPanel extends JPanel
         yPos.setText(String.format("y position: %.2f",(500-ball.getYPos())));
         xVelocity.setText(String.format("x velocity: %.2f",ball.getXVelo()));
         yVelocity.setText(String.format("y velocity: %.2f",ball.getYVelo()));
+        ball.setCenter();
         canvas.repaint();
+        if (Math.abs(ball.getYPos()-canvas.getGround().getHeight())<=EPSILON)
+        {
+            animator.cancel();
+        }
     }
         public class ClickListener implements ActionListener
     {
-        
+        private ControlPanel controls;
+        public ClickListener(ControlPanel chong)
+        {
+            this.controls=chong;
+        }
         public void actionPerformed(ActionEvent event) 
         {
-            Date time=new Date();
-            timer.schedule(animator,time);
-            timer.cancel();
+            String button=event.getActionCommand();
+            if (button.equals("Launch!"))
+           { animator=new AnimateProjectile(this.controls);
+             timer.scheduleAtFixedRate(animator,0,1);
+           }
         }
     
     }
