@@ -30,6 +30,7 @@ public class ControlPanel extends JPanel
     private Timer timer;
     private TimerTask animator;
     private static final double EPSILON=.1;
+    private Vector victor;
     /**
      * Default constructor for objects of class ControlPanel
      */
@@ -41,9 +42,9 @@ public class ControlPanel extends JPanel
         ClickListener listen=new ClickListener(this);
         this.angle=new JLabel(String.format("Angle: %.2f",this.canvas.getTheta()));
         this.xPos=new JLabel(String.format("x position: %.2f",this.ball.getXPos()));
-        this.yPos=new JLabel(String.format("y position: %.2f",this.ball.getYPos()));
+        this.yPos=new JLabel(String.format("y position: %.2f",450-this.ball.getYPos()));
         this.xVelocity=new JLabel(String.format("x velocity: %.2f",this.ball.getXVelo()));
-        this.yVelocity=new JLabel(String.format("y velocity: %.2f",(500-this.ball.getYVelo())));
+        this.yVelocity=new JLabel(String.format("y velocity: %.2f",(this.ball.getYVelo())));
         this.timer=new Timer();
         this.animator=new AnimateProjectile(this);
         this.buttonTest=new JButton("Launch!");
@@ -58,16 +59,31 @@ public class ControlPanel extends JPanel
     }
     public void nextFrame()
     {
+        if (canvas.prelaunch())
+        {
+            this.victor=canvas.getVector();
+            if (this.victor==null)
+            {
+                canvas.testMotion();
+            }
+            else
+            {
+                canvas.intMotion(victor.calcMagnitude()*10);
+            }
+            canvas.launching();
+        }
         canvas.move();
         xPos.setText(String.format("x position: %.2f",ball.getXPos()));
-        yPos.setText(String.format("y position: %.2f",(500-ball.getYPos())));
+        yPos.setText(String.format("y position: %.2f",(450-ball.getYPos())));
         xVelocity.setText(String.format("x velocity: %.2f",ball.getXVelo()));
         yVelocity.setText(String.format("y velocity: %.2f",ball.getYVelo()));
         ball.setCenter();
         canvas.repaint();
-        if (Math.abs(ball.getYPos()-canvas.getGround().getHeight())<=EPSILON)
+        if (Math.abs(ball.getYPos()-canvas.getGround().getHeight())<=EPSILON&&
+                    !canvas.prelaunch())
         {
             animator.cancel();
+            canvas.launchAgain();
         }
     }
         public class ClickListener implements ActionListener

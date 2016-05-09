@@ -15,7 +15,6 @@ public class ProjectileMotion extends JFrame
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         Projectile ball=new Projectile(50,400,0,0,10);
         DisplayPanel canvas=new DisplayPanel(ball);
-        canvas.testMotion();
         controls=new ControlPanel(canvas, ball);
         this.setLayout(new BorderLayout());
         this.add(canvas,BorderLayout.CENTER);

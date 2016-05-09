@@ -30,8 +30,9 @@ public class DisplayPanel extends JPanel
     private double theta;
     private double downPull;
     private double compoundingTime;
-    private Line2D.Double vector;
+    private Vector vector;
     private Ground ground;
+    private boolean inPrelaunch;
     
     /**
      * Default constructor for objects of class DrawingPanel
@@ -42,7 +43,6 @@ public class DisplayPanel extends JPanel
         this.compoundingTime=1.0;
         this.ball=p;
         this.downPull=9/8;
-        this.theta=30;
         this.setFocusable(true);
         this.select=new SelectListener();
         this.move=new DragListener();
@@ -53,6 +53,7 @@ public class DisplayPanel extends JPanel
         this.addMouseMotionListener(this.move);
         this.addKeyListener(this.compass);
         this.ground=new Ground(1600,450);
+        this.inPrelaunch=true;
     }
     public Dimension getPreferredSize()
     {
@@ -67,6 +68,7 @@ public class DisplayPanel extends JPanel
     {
         double startVelo=Math.sqrt(2*intEnergy/this.ball.getMass());
         this.downPull=this.GRAVITY/this.ball.getMass();
+        this.theta=vector.calcTheta();
         this.ball.setXVelo(Math.cos(this.theta)*startVelo);
         this.ball.setYVelo(Math.sin(this.theta)*startVelo);
     }
@@ -100,18 +102,35 @@ public class DisplayPanel extends JPanel
         Graphics2D g2= (Graphics2D) g;
         this.ball.draw(g2);
         this.ground.draw(g2);
-        if (this.vector!=null)
+        if (this.inPrelaunch&&this.vector!=null)
         {
-            g2.draw(this.vector);
+            this.vector.draw(g2);
         }
     }
     public void findForce(Point2D.Double mouse)
     {
-        this.vector=new Line2D.Double(ball.getCenter(),mouse);
+        this.vector=new Vector(this.ball.getCenter(),mouse);
     }
     public double getTheta()
     {
         return Math.toDegrees(this.theta);
+    }
+    public boolean prelaunch()
+    {
+        return this.inPrelaunch;
+    }
+    public void launching()
+    {
+        this.inPrelaunch=false;
+    }
+    public Vector getVector()
+    {
+        return this.vector;
+    }
+    public void launchAgain()
+    {
+        this.vector=null;
+        this.inPrelaunch=true;
     }
         public class SelectListener implements MouseListener
     {
@@ -134,9 +153,12 @@ public class DisplayPanel extends JPanel
 
           double xPos=event.getX();
           double yPos=event.getY();
-          theta=Math.acos(xPos-ball.getXPos());
           Point2D.Double mousePos=new Point2D.Double(xPos,yPos);
-          findForce(mousePos);
+          if (inPrelaunch)
+          {
+              findForce(mousePos);
+              theta=vector.calcTheta();
+            }
            repaint();
         }
         public void mouseReleased(MouseEvent event)
@@ -151,9 +173,6 @@ public class DisplayPanel extends JPanel
         public void mouseDragged(MouseEvent event)
         {
             //use this one
-            double xPos=event.getX();
-            double yPos=event.getY();
-            Point2D.Double mousePos=new Point2D.Double(xPos,yPos);
             select.mousePressed(event);
 
             repaint();

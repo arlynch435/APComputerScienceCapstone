@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=xStart\ yStart\ xEnd\ yEnd
+comment0.target=Vector(double,\ double,\ double,\ double)
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ Projectile\r\n
+comment1.params=start\ xEnd\ yEnd
+comment1.target=Vector(java.awt.geom.Point2D.Double,\ double,\ double)
+comment2.params=start\ end
+comment2.target=Vector(java.awt.geom.Point2D.Double,\ java.awt.geom.Point2D.Double)
+comment3.params=
+comment3.target=void\ setToMax()
+comment4.params=
+comment4.target=double\ calcTheta()
+comment5.params=
+comment5.target=double\ calcMagnitude()
+comment6.params=g2
+comment6.target=void\ draw(java.awt.Graphics2D)
+numComments=7
