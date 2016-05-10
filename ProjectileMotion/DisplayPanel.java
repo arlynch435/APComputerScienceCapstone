@@ -38,7 +38,8 @@ public class DisplayPanel extends JPanel
     private Ground ground;
     /** the state of the projectile */
     private boolean inPrelaunch;
-    
+    /** A full circle in radians */
+    private static final double FULLCIRCLE=2*Math.PI;
     /**
      * Default constructor for objects of class DrawingPanel
      */
@@ -83,9 +84,14 @@ public class DisplayPanel extends JPanel
         double startVelo=Math.sqrt(2*intEnergy/this.ball.getMass());
         //finds the angle of the vector from the horizontal
         this.theta=vector.calcTheta();
+        double finalTheta=this.theta;
+                if (intEnergy<0)
+        {
+            finalTheta=FULLCIRCLE+this.theta;
+        }
         //set the velocities based on the x and y components of the vector
-        this.ball.setXVelo(Math.cos(this.theta)*startVelo);
-        this.ball.setYVelo(Math.sin(this.theta)*startVelo);
+        this.ball.setXVelo(Math.cos(finalTheta)*startVelo);
+        this.ball.setYVelo(Math.sin(finalTheta)*startVelo);
     }
     /**
      * sets the initial properties of the projectile if no vector exists
@@ -93,7 +99,7 @@ public class DisplayPanel extends JPanel
     public void testMotion()
     {
         this.ball.setXVelo(40);
-        this.ball.setYVelo(98);
+        this.ball.setYVelo(49);
     }
     /**
      * Updates the properties of the projectile

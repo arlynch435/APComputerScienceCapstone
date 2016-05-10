@@ -3,8 +3,11 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 public class ProjectileMotion extends JFrame
 {
+    /** the width of the window*/
     private static final int FRAME_WIDTH=1600;
+    /** the height of the window*/
     private static final int FRAME_HEIGHT=800;
+    /** the the control panel of the program*/
     private ControlPanel controls;
     /**
      * Default constructor for objects of class ProjectileMotion

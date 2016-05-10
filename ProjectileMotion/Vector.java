@@ -59,7 +59,8 @@ public class Vector
     public double calcTheta()
     {
         this.calcMagnitude();
-        this.thetaFromX=Math.acos((distance.getX()-ball.getX())/this.magnitude);
+        //uses the absolute value of magnitude to determine the angle of the vector
+        this.thetaFromX=Math.asin((Math.abs(distance.getY()-ball.getY()))/this.magnitude);
         return this.thetaFromX;
     }
     /**
@@ -69,6 +70,11 @@ public class Vector
     {
         //uses distance formula
         this.magnitude=Math.sqrt(Math.pow((ball.getX()-distance.getX()),2)+Math.pow(ball.getY()-distance.getY(),2));
+        //determines if the vector is pointed downwards
+        if (this.distance.getY()>this.ball.getY())
+        {
+            this.magnitude= -this.magnitude;
+        }
         return this.magnitude;
     }
     /**
