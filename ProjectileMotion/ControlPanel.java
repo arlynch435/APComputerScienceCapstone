@@ -38,7 +38,7 @@ public class ControlPanel extends JPanel
     /** the object to perform animations */
     private TimerTask animator;
     /** the margin of error for the closeness of two doubles */
-    private static final double EPSILON=.01;
+    private static final double EPSILON=.001;
     /** the vector of the ball */
     private Vector victor;
     /**

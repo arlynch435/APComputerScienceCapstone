@@ -93,7 +93,7 @@ public class DisplayPanel extends JPanel
     public void testMotion()
     {
         this.ball.setXVelo(40);
-        this.ball.setYVelo(9.8);
+        this.ball.setYVelo(98);
     }
     /**
      * Updates the properties of the projectile
