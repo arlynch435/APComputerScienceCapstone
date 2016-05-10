@@ -7,7 +7,7 @@ public class ProjectileMotion extends JFrame
     private static final int FRAME_HEIGHT=800;
     private ControlPanel controls;
     /**
-     * Default constructor for objects of class DisplayEditor
+     * Default constructor for objects of class ProjectileMotion
      */
     public ProjectileMotion() throws InterruptedException
     {

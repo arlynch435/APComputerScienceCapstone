@@ -4,4 +4,5 @@ comment0.target=ControlPanel(DisplayPanel,\ Projectile)
 comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ ControlPanel\r\n
 comment1.params=
 comment1.target=void\ nextFrame()
+comment1.text=\r\n\ Where\ the\ animation\ occurs\r\n
 numComments=2

@@ -3,19 +3,23 @@ import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 /**
- * Write a description of class Projectile here.
+ * The Projectile object being used for simulation
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Austin Lynch 
  */
 public class Projectile
 {
-    /** description of instance variable x (add comment for each instance variable) */
+    /** the x position of the object in in meters*/
     private double xPos;
+    /** the y position of the object in meters*/
     private double yPos;
+    /** the x velocity of the object in meters/second*/
     private double xVelocity;
+    /** the y velocity of the object in meters/second*/
     private double yVelocity;
+    /** the mass of the object in grams*/
     private double mass;
+    /** the center of the object */
     private Point2D.Double center;
     /**
      * Default constructor for objects of class Projectile
@@ -30,60 +34,86 @@ public class Projectile
         this.mass=weight;
         this.center=new Point2D.Double(this.xPos,this.yPos);
     }
-    public double getXPos()
+    
+    /**
+     * Returns the x position of the object
+     */public double getXPos()
     {
-        // put your code here
         return xPos;
     }
-        public double getYPos()
+    /**
+     * Returns the y position of the object
+     */public double getYPos()
     {
-        // put your code here
         return yPos;
     }
-        public double getXVelo()
+    /**
+     * Returns the x velocity of the object
+     */
+    public double getXVelo()
     {
-        // put your code here
         return xVelocity;
     }
-        public double getYVelo()
+    /**
+     * Returns the y velocity of the object
+     */
+    public double getYVelo()
     {
-        // put your code here
         return yVelocity;
     }
+    /**
+     * Returns the center of the object
+     */
     public Point2D.Double getCenter()
     {
         return this.center;
     }
+    /**
+     * Returns the mass of the object
+     */
     public double getMass()
     {
-        // put your code here
         return mass;
     }
-        public void setXPos(double newPos)
+    /**
+     * Sets the new x position to newPos
+     */
+    public void setXPos(double newPos)
     {
-        // put your code here
         this.xPos=newPos;
     }
-        public void setYPos(double newPos)
+    /**
+     * Sets the new y position to newPos
+     */
+    public void setYPos(double newPos)
     {
-        // put your code here
         this.yPos=newPos;
     }
-        public void setCenter()
+    /**
+     * Sets the center of the object based on its current position
+     */
+    public void setCenter()
     {
         this.center=new Point2D.Double(this.xPos,this.yPos);
     }
-        public void setXVelo(double newVelo)
+    /**
+     * Sets the x velocity to newVelo
+     */
+    public void setXVelo(double newVelo)
     {
-        // put your code here
         this.xVelocity=newVelo;
     }
-        public void setYVelo(double newVelo)
+    /**
+     *Sets the y velocity to newVelo
+     */
+    public void setYVelo(double newVelo)
     {
-        // put your code here
         this.yVelocity=newVelo;
     }
-        public void draw(Graphics2D g2)
+    /**
+     * Draws the projectile as a small circular object
+     */
+    public void draw(Graphics2D g2)
     {
         Ellipse2D.Double circle=new Ellipse2D.Double(this.xPos-5,
                                                      this.yPos-5,

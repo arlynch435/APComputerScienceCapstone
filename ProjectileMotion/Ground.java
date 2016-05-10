@@ -2,15 +2,15 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.Line2D;
 /**
- * Write a description of class Projectile here.
+ * The horizon and the ground of the landscape
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Austin Lynch
  */
 public class Ground
 {
-    /** description of instance variable x (add comment for each instance variable) */
+    /** the length of the ground */
     private double length;
+    /** how far from the top of the component the ground is situated */
     private double height;
 
     /**
@@ -22,12 +22,18 @@ public class Ground
         this.length=xStart;
         this.height=yStart;
     }
-        public double getHeight()
+    /**
+     * Returns the distance from the top of the component
+     */
+    public double getHeight()
     {
         // put your code here
         return this.height;
     }
-        public void draw(Graphics2D g2)
+    /**
+     * Draws the ground as a line across the screen
+     */
+    public void draw(Graphics2D g2)
     {
         Line2D.Double horizon=new Line2D.Double(0,this.height,this.length,this.height);
         g2.draw(horizon);
