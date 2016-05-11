@@ -81,17 +81,16 @@ public class DisplayPanel extends JPanel
     public void intMotion(double intEnergy)
     {
         //convert the initial kinetic energy (joules) into velocity
-        double startVelo=Math.sqrt(2*intEnergy/this.ball.getMass());
+        double startVelo=Math.sqrt(2*Math.abs(intEnergy)/this.ball.getMass());
         //finds the angle of the vector from the horizontal
         this.theta=vector.calcTheta();
-        double finalTheta=this.theta;
                 if (intEnergy<0)
         {
-            finalTheta=FULLCIRCLE+this.theta;
+            startVelo=-startVelo;
         }
         //set the velocities based on the x and y components of the vector
-        this.ball.setXVelo(Math.cos(finalTheta)*startVelo);
-        this.ball.setYVelo(Math.sin(finalTheta)*startVelo);
+        this.ball.setXVelo(Math.abs(Math.cos(this.theta)*startVelo));
+        this.ball.setYVelo(Math.sin(this.theta)*startVelo);
     }
     /**
      * sets the initial properties of the projectile if no vector exists

@@ -60,7 +60,8 @@ public class Vector
     {
         this.calcMagnitude();
         //uses the absolute value of magnitude to determine the angle of the vector
-        this.thetaFromX=Math.asin((Math.abs(distance.getY()-ball.getY()))/this.magnitude);
+        double test=Math.abs(this.magnitude);
+        this.thetaFromX=Math.acos((Math.abs(distance.getX()-ball.getX()))/test);
         return this.thetaFromX;
     }
     /**
