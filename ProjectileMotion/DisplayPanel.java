@@ -38,8 +38,8 @@ public class DisplayPanel extends JPanel
     private Ground ground;
     /** the state of the projectile */
     private boolean inPrelaunch;
-    /** A full circle in radians */
-    private static final double FULLCIRCLE=2*Math.PI;
+    /** the object that updates the control panel */
+    private ThetaUpdate update;
     /**
      * Default constructor for objects of class DrawingPanel
      */
@@ -56,6 +56,7 @@ public class DisplayPanel extends JPanel
         this.ground=new Ground(1600,450);
         this.inPrelaunch=true;
         this.setBackground(Color.WHITE);
+        this.update=new ThetaUpdate();
         //adds listeners to components
         this.addMouseListener(this.select);
         this.addMouseMotionListener(this.move);
@@ -189,6 +190,13 @@ public class DisplayPanel extends JPanel
         this.vector=null;
         this.inPrelaunch=true;
     }
+    /**
+     * Returns the object that updates the angle
+     */
+    public ThetaUpdate getUpdate()
+    {
+        return this.update;
+    }
         public class SelectListener implements MouseListener
     {
         public void mouseClicked(MouseEvent event)
@@ -217,6 +225,7 @@ public class DisplayPanel extends JPanel
               //calculate the vector
               findForce(mousePos);
               theta=vector.calcTheta();
+              update.updateNumber();
             }
            repaint();
         }

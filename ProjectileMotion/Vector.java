@@ -20,6 +20,7 @@ public class Vector
     private double magnitude;
     /** The maximum x component allowed for the vector to exist */
     private static final double MAXXDISTANCE=500.0;
+    /** A full circle in radians */
     public Vector(double xStart, double yStart, double xEnd, double yEnd)
     {
         this(new Point2D.Double(xStart,yStart),new Point2D.Double(xEnd,yEnd));

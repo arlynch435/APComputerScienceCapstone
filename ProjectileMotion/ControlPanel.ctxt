@@ -5,4 +5,6 @@ comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ ControlPanel\
 comment1.params=
 comment1.target=void\ nextFrame()
 comment1.text=\r\n\ Where\ the\ animation\ occurs\r\n
-numComments=2
+comment2.params=
+comment2.target=void\ updateAngle()
+numComments=3

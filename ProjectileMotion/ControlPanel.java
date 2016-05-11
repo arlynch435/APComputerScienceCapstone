@@ -60,6 +60,7 @@ public class ControlPanel extends JPanel
         this.timer=new Timer();
         this.animator=new AnimateProjectile(this);
         this.launchButton=new JButton("Launch!");
+        canvas.getUpdate().setControls(this);
         //adds components and listeners to main components
         this.launchButton.addActionListener(listen);
         this.add(this.launchButton);
@@ -115,6 +116,10 @@ public class ControlPanel extends JPanel
             canvas.launchAgain();
             canvas.repaint();
         }
+    }
+    public void updateAngle()
+    {
+        this.angle.setText(String.format("Angle: %.2f",this.canvas.getTheta()));
     }
         public class ClickListener implements ActionListener
     {

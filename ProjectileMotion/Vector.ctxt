@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.params=xStart\ yStart\ xEnd\ yEnd
 comment0.target=Vector(double,\ double,\ double,\ double)
+comment0.text=A\ full\ circle\ in\ radians
 comment1.params=start\ xEnd\ yEnd
 comment1.target=Vector(java.awt.geom.Point2D.Double,\ double,\ double)
 comment2.params=start\ end
