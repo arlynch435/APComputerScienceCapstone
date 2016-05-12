@@ -16,7 +16,7 @@ public class ThetaUpdate
         // initialise instance variables
     }
     /**
-     * Constructor for objects of class ThetaUpdate
+     * Takes in controls as a variable
      */
     public void setControls(ControlPanel c)
     {
